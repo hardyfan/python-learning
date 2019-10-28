@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Client</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="txt">
+        <input type="button" value="发送消息" onclick="sendMsg();">
+    </div>
+    <div id="content">
+
+    </div>
+
+    <script type="text/javascript">
+
+        var WebSocket = {};
+        WebSocket.init = function() {
+            this.wsUri = "ws://127.0.0.1:8003/chatsocket";
+            this.lastHeartBeat = new Date().getTime();
+            this.overtime = 8000;
+
+            initChannelData();
+            WebSocket.websocket = new WebSocket(WebSocket.wsUri);
+
+            WebSocket.websocket.onopen = function(evt) {
+                onOpen(evt)
+            };
+            WebSocket.websocket.onclose = function(evt) {
+                onClose(evt)
+            };
+            WebSocket.websocket.onmessage = function(evt) {
+                var response = evt.data;
+                var newTag = document.createElement('div');
+                newTag.innerHTML = response;
+                document.getElementById('content').appendChild(newTag);
+            };
+            WebSocket.websocket.onerror = function(evt) {
+                onError(evt)
+            };
+        }
+        /**
+        * 重新连接
+        * */
+        function reConnect(){
+            console.log("socket 连接断开，正在尝试重新建立连接");
+            WebSocket.init();
+        }
+
+        function onClose(evt) {
+            console.log("DISCONNECTED")
+            reConnect();
+        }
+
+
+        function sendMsg() {
+            var txt = document.getElementById('txt');
+            WebSocket.send(txt.value);
+            txt.value = "";
+        }
+    </script>
+</body>
+</html>
