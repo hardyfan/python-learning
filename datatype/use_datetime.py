@@ -1,10 +1,13 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime, timedelta, timezone
 
-now = datetime.now()
-print('now = ', now)
-print('type(now) = ',type(now))
 
-dt = datetime(2017,12,28,16,49)
+now = datetime.now()
+print(f'now = {now}')
+print(now.strftime('%Y-%m-%d %H:%M:%S'))
+print(datetime.now().strftime('%Y%m%d'))
+
+dt = datetime(2017, 12, 28, 16, 49)
 print('dt = ', dt)
 print('datetime -> timestamp:', dt.timestamp())
 
@@ -12,7 +15,7 @@ ts = dt.timestamp()
 print('timestamp -> datetime:', datetime.fromtimestamp(ts))
 print('timestamp -> datetime as UTC+0:', datetime.utcfromtimestamp(ts))
 
-cday = datetime.strptime('2017-12-28 16:58:02','%Y-%m-%d %H:%M:%S')
+cday = datetime.strptime('2017-12-28 16:58:02', '%Y-%m-%d %H:%M:%S')
 print('strptime =',cday)
 print('strftime =',cday.strftime('%a, %b %d %H:%M'))
 
@@ -25,5 +28,3 @@ utc_dt = datetime.utcnow().replace(tzinfo=timezone.utc)
 utc8_dt = utc_dt.astimezone(timezone(timedelta(hours=8)))
 print('UTC+0:00 now =', utc_dt)
 print('UTC+8:00 now =', utc8_dt)
-
-

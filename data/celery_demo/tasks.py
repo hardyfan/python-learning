@@ -10,4 +10,5 @@ app = Celery('tasks',
 
 @app.task
 def add(x, y):
+    print(f'the result is {x+y}')
     return x + y

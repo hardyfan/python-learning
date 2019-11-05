@@ -5,11 +5,11 @@ from kafka_config import KAFKA_BOOTSTRAP_SERVERS, KAFKA_TOPIC
 
 producer = KafkaProducer(bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS)
 i = 0
-while i < 10:
+while i < 5:
     ts = int(time.time() * 1000)
     data = {
-        "value": str(i),
-        "key": str(i),
+        "value": f'value{i}',
+        "key": f'key{i}',
         "time": ts
     }
     data = json.dumps(data)

@@ -18,8 +18,8 @@ print('strftime =',cday.strftime('%a, %b %d %H:%M'))
 
 print('current datetime =', cday)
 print('current + 10 hours =', cday + timedelta(hours=10))
-print('current - 1 day =',cday-timedelta(days=1))
-print('current + 2.5 days =', cday + timedelta(days=2,hours=12))
+print('current - 1 day =', cday-timedelta(days=1))
+print('current + 2.5 days =', cday + timedelta(days=2, hours=12))
 
 utc_dt = datetime.utcnow().replace(tzinfo=timezone.utc)
 utc8_dt = utc_dt.astimezone(timezone(timedelta(hours=8)))

@@ -3,6 +3,8 @@ import os
 
 pwd = os.path.abspath('.')
 
+print(f'pwd={pwd}')
+
 print('Size         Last Modified          Name')
 print('-------------------------------------------------------')
 

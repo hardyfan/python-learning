@@ -4,7 +4,7 @@ if __name__ == '__main__':
     a = random.random()
     print(a)
 
-    print(random.randint(1,10))
+    print(random.randint(1, 10))
     print(random.choice('tomorrow'))
     print(random.randrange(0, 100, 2))
 
