@@ -21,5 +21,6 @@ def inner():
 if __name__ == '__main__':
     print("count:{count}".format(count=count))
     outer()
+    print("count:{count}".format(count=count))
     inner()
     print("count:{count}".format(count=count))
