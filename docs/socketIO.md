@@ -1,11 +1,19 @@
 [参考链接](https://python-socketio.readthedocs.io/en/latest/)
 
-# 服务端
+## 服务端
+```
+$ pip install python-socketio
+```
 
+## 客户端
 
-# 客户端
+### 安装
+```
+$ pip install "python-socketio[client]"
+$ pip install "python-socketio[asyncio_client]"
+```
 
-## 命名空间
+### 命名空间
 ```
 sio.connect('http://localhost:5000', namespaces=['/chat'])
 
