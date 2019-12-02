@@ -1,5 +1,5 @@
-#！/usr/bin/python3
-# -*- coding: utf-8 -*-
+
+#！/usr/bin/python3# -*- coding: utf-8 -*-
 # FileName: use_mongo.py
 # Create by Hardy on 2019-11-07
 # Description:
@@ -14,18 +14,18 @@ my_col = db["students"]
 
 
 def database_test():
-    '''
+    """
     列出所有数据库
-    '''
+    """
     db_list = client.list_database_names()
     for db_name in db_list:
         print(f'db:{db_name}')
 
 
 def collection_test():
-    '''
+    """
     集合，相当于SQL中的表，只有插入数据后才被创建
-    '''
+    """
     collection_list = db.list_collection_names()
     for collection in collection_list:
         print(f'collection:{collection}')
@@ -36,10 +36,10 @@ def collection_test():
 
 
 def collection_insert():
-    '''
+    """
     插入单行或多行数据的demo
     :return:
-    '''
+    """
     my_dict = {"name": "Hardy", "alexa": "10000", "url": "https://www.loncol.com"}
     x = my_col.insert_one(my_dict)
     print(f'new col id:{x.inserted_id}')
@@ -56,10 +56,10 @@ def collection_insert():
 
 
 def collection_update():
-    '''
+    """
     执行更新操作，update_one和update_many
     :return:
-    '''
+    """
     my_query = {"alexa": "10000"}
     new_values = {"$set": {"alexa": "20000"}}
     my_col.update_many(my_query, new_values)
@@ -69,10 +69,10 @@ def collection_update():
 
 
 def collection_delete():
-    '''
+    """
     执行删除操作，delete_one和delete_many
     :return:
-    '''
+    """
     my_query = {"name": "Hardy"}
     my_col.delete_one(my_query)
     for x in my_col.find():
@@ -80,10 +80,10 @@ def collection_delete():
 
 
 def collection_find():
-    '''
+    """
     查询操作find
     :return:
-    '''
+    """
     x = my_col.find_one()
     print(x)
 
@@ -95,10 +95,10 @@ def collection_find():
 
 
 def collection_sort():
-    '''
+    """
     排序操作：sort
     :return:
-    '''
+    """
     # my_doc = my_col.find().sort("alexa")
     my_doc = my_col.find().sort("_alexa")
     for x in my_doc:

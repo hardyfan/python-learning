@@ -17,8 +17,8 @@ def in_polygon(pt, py):
     while i < l - 1:
         i += 1
         # pt是否在线段的维度区间
-        if ((py[i]["latitude"] <= pt["latitude"] and pt["latitude"] < py[j]["latitude"]) or (
-                py[j]["latitude"] <= pt["latitude"] and pt["latitude"] < py[i]["latitude"])):
+        if ((py[i]["latitude"] <= pt["latitude"] < py[j]["latitude"]) or (
+                py[j]["latitude"] <= pt["latitude"] < py[i]["latitude"])):
             # pt是否在区域内
             if (pt["longitude"] <= (py[j]["longitude"] - py[i]["longitude"]) *
                     (pt["latitude"] - py[i]["latitude"]) /

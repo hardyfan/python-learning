@@ -1,7 +1,9 @@
 from faker import Factory
 
-
 if __name__ == '__main__':
+    """
+    模拟数据生成
+    """
     fake = Factory().create('zh_CN')
 
     for i in range(10):

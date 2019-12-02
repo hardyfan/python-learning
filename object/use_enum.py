@@ -1,5 +1,6 @@
 from enum import Enum, unique
 
+
 @unique
 class Weekday(Enum):
     Sun = 0
@@ -10,13 +11,14 @@ class Weekday(Enum):
     Fri = 5
     Sat = 6
 
-day1 = Weekday.Mon
 
-print('day1 = ', day1)
+if __name__ == '__main__':
+    day1 = Weekday.Mon
+    print('day1 = ', day1)
 
-for name, member in Weekday.__members__.items():
-    print(name, '=>', member, ",", member.value)
+    for name, member in Weekday.__members__.items():
+        print(name, '=>', member, ",", member.value)
 
-Month = Enum('Month', ('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'))
-for name, member in Month.__members__.items():
-    print(name,"=>",member,',',member.value)
+    Month = Enum('Month', ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'))
+    for name, member in Month.__members__.items():
+        print(name, "=>", member, ',', member.value)
