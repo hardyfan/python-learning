@@ -14,7 +14,8 @@ def read_info():
                              'cpu_info_system': 'ubuntu',
                              'cpu_info_idle': 'idle',
                              'cpu_info_interrupt': 'rupt',
-                             'cpu_info_dpc': 'dpc'
+                             'cpu_info_dpc': 'dpc',
+                             'cpu_info_dpc1': 'dpc1'
                              }}]
     return data_list
 
@@ -25,12 +26,21 @@ if __name__ == '__main__':
                             INFLUXDB_USER,
                             INFLUXDB_PASS,
                             INFLUXDB_DB)
-    count = 0
-    while count < 10:
-        count += 1
-        client.write_points(read_info())
-        print(f"{time.strftime('%H:%M:%S')}:第{count}次写入")
-        time.sleep(5)
+
+    # 写入数据库
+    # count = 0
+    # while count < 5:
+    #     count += 1
+    #     client.write_points(read_info())
+    #     print(f"{time.strftime('%H:%M:%S')}:第{count}次写入")
+    #     time.sleep(2)
+
+    # 读取数据库
+    wins = client.query("SELECT * FROM win").get_points()
+    for win in wins:
+        # print(win)
+        print(f"time={win['time']}, cpu={win['cpu']}, cpu_info_usage={win['cpu_info_usage']}")
+
 
 
 

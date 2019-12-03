@@ -16,10 +16,13 @@ conn = pika.BlockingConnection(pika.ConnectionParameters(RABBIT_HOST,
 channel = conn.channel()
 channel.queue_declare(queue='hello')
 
-for i in range(5):
+for i in range(6):
     channel.basic_publish(exchange='',
                           routing_key='hello',
-                          body=f'{i+1}:Hello World!')
+                          body=f'{i+1}:Hello World!',
+                          properties=pika.BasicProperties(
+                              delivery_mode=2,  # 消息持久化
+                          ))
 
 print(f"{time.ctime()}:开始队列...")
 conn.close()

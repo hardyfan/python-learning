@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# Author: Hardy
-# Date: 2019-11-05
-# Description: rabbit 消费者
+# FileName: producer_exchange_rabbit.py
+# Create by Hardy on 2019-12-03
+# Description:
 import pika
 import time
 
@@ -13,19 +13,16 @@ conn = pika.BlockingConnection(pika.ConnectionParameters(RABBIT_HOST,
                                                          '/',
                                                          credentials))
 channel = conn.channel()
-channel.queue_declare(queue='hardy')
+channel.exchange_declare(exchange='logs', exchange_type='fanout')
 
+for i in range(6):
+    message = f'{i+1}:Hello Hardy!'
+    channel.basic_publish(exchange='logs',
+                          routing_key='',
+                          body=message)
 
-def callback(ch, method, properties, body):
-    print(f"{time.strftime('%H:%M:%S')}:收到消息 {body}")
-
-
-channel.basic_consume('hello',
-                      callback,
-                      consumer_tag="hello-consumer")
-
-print(f"{time.strftime('%H:%M:%S')}:等待消息，按CTRL+C退出")
-channel.start_consuming()
+print(f"{time.ctime()}:开始队列...")
+conn.close()
 
 
 

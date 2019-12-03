@@ -15,7 +15,7 @@ while i < 5:
     data = json.dumps(data)
     producer.send(KAFKA_TOPIC, data.encode("utf-8"))
     producer.flush()
-    print(i)
     i += 1
+    print(f"send {i}")
     time.sleep(1)
 

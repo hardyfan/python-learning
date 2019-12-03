@@ -1,5 +1,3 @@
-
-
 def reverse1(s):
     return s[::-1]
 
