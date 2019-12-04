@@ -12,6 +12,7 @@ while i < 5:
         "key": f'key{i}',
         "time": ts
     }
+    print(data)
     data = json.dumps(data)
     producer.send(KAFKA_TOPIC, data.encode("utf-8"))
     producer.flush()
