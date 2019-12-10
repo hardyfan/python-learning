@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+</head>
+<body>
+    <script>
+    var options = {
+      clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8)
+    }
+    
+    var client = mqtt.connect("ws://10.90.93.63:8082/mqtt",options)
+
+    client.on('connect', function () {
+      console.log("connect success!")
+      client.subscribe('hardy', function (err) {
+        if (!err) {
+          console.log("subscribe success!")
+          client.publish('hardy', 'Hello mqtt')
+        }else{
+          console.log(err)
+        }
+      })
+    })
+    
+    client.on('error', function (err) {
+      console.log(err)
+      client.end()
+    })
+
+    client.on('message', function (topic, message) {
+      console.log('-> ' + message.toString())
+    })
+</script>
+
+</body>
+</html>
