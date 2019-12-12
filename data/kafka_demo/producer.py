@@ -9,6 +9,7 @@ while i < 5:
     ts = int(time.time() * 1000)
     data = {
         "value": f'value{i}',
+
         "key": f'key{i}',
         "time": ts
     }
